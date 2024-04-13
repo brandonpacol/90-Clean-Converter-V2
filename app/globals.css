@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: #FFFFFF;
+  background: #191414;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.grid-rows-layout {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Header size, flexible main, footer size */
+    min-height: 100vh;
+}
+
+/* appear - on page load */
+.fade-appear {
+    opacity: 0;
+    z-index: 1;
+}
+
+.fade-appear.playlist-cover,
+.fade-appear.playlist-name,
+.fade-appear.playlist-caption {
+    transform: translateX(-100px);
+}
+
+.fade-appear.fade-appear-active.playlist-cover {
+    opacity: 1;
+    transform: translateX(0px);
+    transition: opacity 500ms linear, transform 500ms ease-out;
+}
+
+.fade-appear.fade-appear-active.playlist-name {
+    opacity: 1;
+    transform: translateX(0px);
+    transition: opacity 500ms linear 300ms, transform 500ms ease-out 300ms;
+}
+
+.fade-appear.fade-appear-active.playlist-caption {
+    opacity: 1;
+    transform: translateX(0px);
+    transition: opacity 500ms linear 600ms, transform 500ms ease-out 600ms;
+}
+
+.fade-appear.fade-appear-active.playlist-btn {
+    opacity: 1;
+    transition: opacity 500ms linear 900ms, background-color 150ms;
+}
+
+/* slide enter */
+.slide-enter {
+    opacity: 0;
+    transform: scale(0.97) translateY(5px);
+    z-index: 1;
+}
+
+.slide-enter.slide-enter-active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition: opacity 150ms linear, transform 150ms ease-in-out;
+}
+
+/* slide exit */
+.slide-exit {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+
+}
+
+.slide-exit.slide-exit-active {
+    opacity: 0;
+    transform: scale(0.97) translateY(5px);
+    transition: opacity 100ms linear, transform 100ms ease-out;
+}
+
+.slide-exit-done {
+    opacity: 0;
+}
